@@ -1,6 +1,6 @@
 {
   "name": "nuxt-vk-rtrg",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Add VK Retargeting to your nuxt.js application",
   "author": "Klimovych Juriy <web-west@i.ua>",
   "repository": {
