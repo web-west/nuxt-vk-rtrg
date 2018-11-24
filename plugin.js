@@ -7,22 +7,24 @@ export default ({ app: { router } }) => {
   })
 
   function create() {
-    window['vkCounter<%= options.id %>'] = new VK.Retargeting.Init('<%= options.id %>')
+    window['vkCounter<%= options.id.replace(/[^A-Za-z0-9]/gim,"") %>'] = new VK.Retargeting.Init('<%= options.id.replace(/[^A-Za-z0-9]/gim,"") %>')
+
     router.afterEach((to, from) => {
       if (!ready) {
         // Don't record a duplicate hit for the initial navigation.
         return
       }
-      window['vkCounter<%= options.id %>'].hit(to.fullPath, {
+      window['vkCounter<%= options.id.replace(/[^A-Za-z0-9]/gim,"") %>'].hit(to.fullPath, {
         referer: from.fullPath
       })
     })
   }
 
-  if (window.VK && window.VK.Retargeting) {
+  if (window.VK === undefined) {
     create()
   } else {
     window.VK.Retargeting.Hit()
   }
-}
 
+
+}
